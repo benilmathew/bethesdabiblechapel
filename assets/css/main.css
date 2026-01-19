@@ -171,9 +171,24 @@ img {
     justify-content: space-between;
 }
 
+.logo {
+    flex-shrink: 0;
+}
+
+.logo a {
+    display: block;
+    line-height: 0;
+}
+
 .logo-img {
-    height: 50px;
+    height: 55px;
     width: auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
 
 .nav-menu {

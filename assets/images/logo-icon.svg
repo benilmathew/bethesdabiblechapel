@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50" height="50">
+  <!-- Simplified icon version for mobile/small displays -->
+  
+  <!-- Book -->
+  <path d="M10 10 L10 40 Q25 37 25 40 L25 10 Q25 13 10 10 Z" 
+        fill="#2c5f8d" 
+        stroke="#1a3a5c" 
+        stroke-width="1"/>
+  <path d="M25 10 L25 40 Q40 37 40 40 L40 10 Q40 13 25 10 Z" 
+        fill="#3d7dad" 
+        stroke="#2c5f8d" 
+        stroke-width="1"/>
+  
+  <!-- Cross -->
+  <rect x="21" y="18" width="8" height="2" fill="white" opacity="0.95"/>
+  <rect x="24" y="15" width="2" height="8" fill="white" opacity="0.95"/>
+  
+  <!-- Book pages -->
+  <line x1="13" y1="15" x2="22" y2="15" stroke="white" stroke-width="0.8" opacity="0.4"/>
+  <line x1="13" y1="20" x2="22" y2="20" stroke="white" stroke-width="0.8" opacity="0.4"/>
+  <line x1="13" y1="25" x2="22" y2="25" stroke="white" stroke-width="0.8" opacity="0.4"/>
+  <line x1="28" y1="15" x2="37" y2="15" stroke="white" stroke-width="0.8" opacity="0.4"/>
+  <line x1="28" y1="20" x2="37" y2="20" stroke="white" stroke-width="0.8" opacity="0.4"/>
+  <line x1="28" y1="25" x2="37" y2="25" stroke="white" stroke-width="0.8" opacity="0.4"/>
+</svg>
