@@ -1,0 +1,49 @@
+# Netlify Configuration for Bethesda Bible Chapel
+
+[build]
+  # Build command (not needed for static site, but can be used for preprocessing)
+  command = "echo 'Static site - no build needed'"
+  
+  # Directory to publish (root directory contains index.html)
+  publish = "."
+  
+  # Functions directory (if you want to add serverless functions later)
+  functions = "netlify/functions"
+
+# Redirect rules
+[[redirects]]
+  # Redirect /home to /
+  from = "/home"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  # SPA fallback - for any 404, show the 404 page
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Headers for better performance and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Development server settings (optional)
+[dev]
+  command = "npm run serve"
+  port = 8000
+  publish = "."

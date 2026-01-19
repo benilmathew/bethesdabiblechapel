@@ -1,0 +1,13 @@
+node_modules/
+logs/
+*.log
+.DS_Store
+Thumbs.db
+.env
+.vscode/
+*.swp
+*.bak
+*.tmp
+dist/
+build/
+package-lock.json

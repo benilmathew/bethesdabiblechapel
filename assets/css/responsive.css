@@ -1,0 +1,237 @@
+/* ====================================
+   Responsive Design
+   ==================================== */
+
+/* Tablets and smaller desktops */
+@media screen and (max-width: 1024px) {
+    .hero-title {
+        font-size: 48px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+    }
+
+    .section-title {
+        font-size: 36px;
+    }
+
+    .nav-menu {
+        gap: 25px;
+    }
+
+    .app-content {
+        gap: 40px;
+    }
+
+    .sermon-card {
+        grid-template-columns: 1fr;
+    }
+
+    .sermon-content {
+        padding: 30px;
+    }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+    :root {
+        --section-padding: 60px 0;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 20px;
+        gap: 0;
+        transition: var(--transition);
+        overflow-y: auto;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-menu > li > a {
+        display: block;
+        padding: 15px 0;
+    }
+
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: var(--bg-light);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-menu {
+        max-height: 500px;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .hero {
+        height: 80vh;
+        min-height: 500px;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .section-description {
+        font-size: 16px;
+    }
+
+    .about-grid,
+    .connected-grid,
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .app-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .app-buttons {
+        justify-content: center;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 480px) {
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 13px;
+    }
+
+    .about-card,
+    .connected-card {
+        padding: 30px 20px;
+    }
+
+    .sermon-content {
+        padding: 25px;
+    }
+
+    .sermon-title {
+        font-size: 24px;
+    }
+
+    .event-card {
+        padding: 20px;
+    }
+
+    .event-date {
+        width: 60px;
+        height: 60px;
+    }
+
+    .date-day {
+        font-size: 24px;
+    }
+
+    .app-image img {
+        max-width: 300px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Very small devices */
+@media screen and (max-width: 360px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero-title {
+        font-size: 24px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+}
