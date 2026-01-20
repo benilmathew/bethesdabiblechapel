@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
 
                 // Ensure About dropdown stays active when menu is opened on mobile
-                if (navMenu.classList.contains('active') && window.innerWidth <= 768) {
+                if (navMenu.classList.contains('active') && window.innerWidth <= 1024) {
                     // Force handle dropdowns to ensure About dropdown is active
                     handleDropdowns();
                     // Additional check
                     const aboutDropdown = document.querySelector('.dropdown a[href="/pages/about.html"]');
                     if (aboutDropdown) {
-                        aboutDropdown.closest('.dropdown').classList.add('active');
+                        aboutDropdown.closest('.dropdown').classList.add('active', 'about-dropdown');
                     }
                 }
             });
@@ -39,12 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const newLink = link.cloneNode(true);
                 link.parentNode.replaceChild(newLink, link);
 
-                if (window.innerWidth <= 768) {
+                if (window.innerWidth <= 1024) {
                     // Special case: Always keep About dropdown open on mobile
                     if (link.getAttribute('href') === '/pages/about.html') {
                         // Force active class and ensure it stays active
                         setTimeout(() => {
-                            dropdown.classList.add('active');
+                            dropdown.classList.add('active', 'about-dropdown');
                         }, 10);
                         // Prevent default click behavior to keep dropdown open
                         newLink.addEventListener('click', function(e) {
@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Additional check: Ensure About dropdown is active on mobile
         function ensureAboutDropdownActive() {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 1024) {
                 const aboutDropdown = document.querySelector('.dropdown a[href="/pages/about.html"]');
                 if (aboutDropdown) {
-                    aboutDropdown.closest('.dropdown').classList.add('active');
+                    aboutDropdown.closest('.dropdown').classList.add('active', 'about-dropdown');
                 }
             }
         }
