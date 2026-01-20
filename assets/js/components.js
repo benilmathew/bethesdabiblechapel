@@ -33,8 +33,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Update active nav link after header is loaded
     updateActiveNavLink();
     
-    // Initialize mobile menu after header is loaded
-    initializeMobileMenu();
+    // Note: Mobile menu is handled by main.js
 });
 
 // Update active navigation link based on current page
@@ -52,26 +51,4 @@ function updateActiveNavLink() {
             }
         }
     });
-}
-
-// Initialize mobile menu functionality
-function initializeMobileMenu() {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideNav = event.target.closest('.navbar');
-            if (!isClickInsideNav && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-            }
-        });
-    }
 }

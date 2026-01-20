@@ -66,6 +66,20 @@
     .nav-menu > li > a {
         display: block;
         padding: 15px 0;
+        position: relative;
+    }
+
+    /* Mobile dropdown indicator */
+    .dropdown > a::after {
+        content: '\25BC';
+        font-size: 10px;
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+        display: inline-block;
+    }
+
+    .dropdown.active > a::after {
+        transform: rotate(180deg);
     }
 
     .dropdown-menu {
@@ -78,10 +92,22 @@
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
+        padding-left: 20px;
     }
 
     .dropdown.active .dropdown-menu {
         max-height: 500px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .dropdown-menu li {
+        border-bottom: none;
+    }
+
+    .dropdown-menu li a {
+        padding: 10px 0;
+        font-size: 14px;
     }
 
     .nav-cta {

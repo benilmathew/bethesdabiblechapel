@@ -3,30 +3,87 @@
 // ====================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const dropdowns = document.querySelectorAll('.dropdown');
+    // Wait for components to load, then initialize mobile menu
+    function initializeMobileMenu() {
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const dropdowns = document.querySelectorAll('.dropdown');
 
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+            });
+        }
+
+        // Mobile Dropdown Toggle - works on all screen sizes dynamically
+        function handleDropdowns() {
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('a');
+                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+                
+                // Remove old event listeners by cloning
+                const newLink = link.cloneNode(true);
+                link.parentNode.replaceChild(newLink, link);
+                
+                if (window.innerWidth <= 768) {
+                    // Special case: Always keep About dropdown open on mobile
+                    if (link.getAttribute('href') === '/pages/about.html') {
+                        dropdown.classList.add('active');
+                    } else {
+                        // Mobile behavior: click to expand for other dropdowns
+                        newLink.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            dropdown.classList.toggle('active');
+                        });
+                    }
+                } else {
+                    // Desktop behavior: remove active class, hover is handled by CSS
+                    dropdown.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize dropdown handlers
+        handleDropdowns();
+
+        // Reinitialize on window resize
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                handleDropdowns();
+            }, 250);
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (navMenu && navMenu.classList.contains('active')) {
+                if (!e.target.closest('.nav-wrapper')) {
+                    mobileMenuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
         });
     }
 
-    // Mobile Dropdown Toggle
-    if (window.innerWidth <= 768) {
-        dropdowns.forEach(dropdown => {
-            const link = dropdown.querySelector('a');
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdown.classList.toggle('active');
+    // Check if header is already loaded, if not wait for it
+    if (document.querySelector('.mobile-menu-toggle')) {
+        initializeMobileMenu();
+    } else {
+        // Wait for header component to load
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList' && document.querySelector('.mobile-menu-toggle')) {
+                    initializeMobileMenu();
+                    observer.disconnect();
                 }
             });
         });
+        observer.observe(document.body, { childList: true, subtree: true });
     }
 
     // Smooth Scroll for Anchor Links
