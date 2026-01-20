@@ -95,6 +95,13 @@
         padding-left: 20px;
     }
 
+    /* Special case: About dropdown always visible on mobile */
+    .dropdown a[href="/pages/about.html"] ~ .dropdown-menu {
+        max-height: 500px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
     .dropdown.active .dropdown-menu {
         max-height: 500px;
         padding-top: 10px;

@@ -15,6 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.toggle('active');
                 navMenu.classList.toggle('active');
                 document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+
+                // Ensure About dropdown stays active when menu is opened on mobile
+                if (navMenu.classList.contains('active') && window.innerWidth <= 768) {
+                    // Force handle dropdowns to ensure About dropdown is active
+                    handleDropdowns();
+                    // Additional check
+                    const aboutDropdown = document.querySelector('.dropdown a[href="/pages/about.html"]');
+                    if (aboutDropdown) {
+                        aboutDropdown.closest('.dropdown').classList.add('active');
+                    }
+                }
             });
         }
 
@@ -23,15 +34,24 @@ document.addEventListener('DOMContentLoaded', function() {
             dropdowns.forEach(dropdown => {
                 const link = dropdown.querySelector('a');
                 const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-                
+
                 // Remove old event listeners by cloning
                 const newLink = link.cloneNode(true);
                 link.parentNode.replaceChild(newLink, link);
-                
+
                 if (window.innerWidth <= 768) {
                     // Special case: Always keep About dropdown open on mobile
                     if (link.getAttribute('href') === '/pages/about.html') {
-                        dropdown.classList.add('active');
+                        // Force active class and ensure it stays active
+                        setTimeout(() => {
+                            dropdown.classList.add('active');
+                        }, 10);
+                        // Prevent default click behavior to keep dropdown open
+                        newLink.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            // Keep dropdown active - don't toggle it
+                            dropdown.classList.add('active');
+                        });
                     } else {
                         // Mobile behavior: click to expand for other dropdowns
                         newLink.addEventListener('click', function(e) {
@@ -48,6 +68,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialize dropdown handlers
         handleDropdowns();
+
+        // Additional check: Ensure About dropdown is active on mobile
+        function ensureAboutDropdownActive() {
+            if (window.innerWidth <= 768) {
+                const aboutDropdown = document.querySelector('.dropdown a[href="/pages/about.html"]');
+                if (aboutDropdown) {
+                    aboutDropdown.closest('.dropdown').classList.add('active');
+                }
+            }
+        }
+
+        // Call this immediately and when menu opens
+        ensureAboutDropdownActive();
 
         // Reinitialize on window resize
         let resizeTimer;
@@ -85,6 +118,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         observer.observe(document.body, { childList: true, subtree: true });
     }
+
+    // Close mobile menu when navigation links are clicked (but keep About dropdown active)
+    document.addEventListener('click', function(e) {
+        const navMenu = document.querySelector('.nav-menu');
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+
+        if (navMenu && navMenu.classList.contains('active')) {
+            // If clicked element is a navigation link (but not the About dropdown toggle)
+            if (e.target.closest('.nav-menu a') && !e.target.closest('.dropdown a[href="/pages/about.html"]')) {
+                // Close mobile menu
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+
+                // But ensure About dropdown stays active for next menu open
+                setTimeout(() => {
+                    const aboutDropdown = document.querySelector('.dropdown a[href="/pages/about.html"]');
+                    if (aboutDropdown && window.innerWidth <= 768) {
+                        aboutDropdown.closest('.dropdown').classList.add('active');
+                    }
+                }, 300);
+            }
+        }
+    });
 
     // Smooth Scroll for Anchor Links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
