@@ -196,6 +196,7 @@ img {
     align-items: center;
     gap: 35px;
     margin: 0 auto;
+    margin-right: 30px;
 }
 
 .nav-menu li {

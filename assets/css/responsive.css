@@ -18,6 +18,7 @@
 
     .nav-menu {
         gap: 25px;
+        margin-right: 20px;
     }
 
     .app-content {
@@ -69,17 +70,9 @@
         position: relative;
     }
 
-    /* Mobile dropdown indicator */
+    /* Mobile dropdown indicator - hide on mobile since all items are expanded */
     .dropdown > a::after {
-        content: '\25BC';
-        font-size: 10px;
-        margin-left: 8px;
-        transition: transform 0.3s ease;
-        display: inline-block;
-    }
-
-    .dropdown.active > a::after {
-        transform: rotate(180deg);
+        display: none;
     }
 
     .dropdown-menu {
@@ -89,17 +82,29 @@
         transform: none;
         box-shadow: none;
         background-color: var(--bg-light);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        padding-left: 20px;
+        max-height: 500px;
+        overflow: visible;
+        padding-left: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-left: 3px solid var(--primary-color);
+        margin-left: 15px;
     }
 
-    /* Special case: About dropdown always visible on mobile - OVERRIDE ALL */
-    .nav-menu .dropdown:nth-child(2) .dropdown-menu,
-    .dropdown a[href="/pages/about.html"] ~ .dropdown-menu,
-    .dropdown:has(a[href="/pages/about.html"]) .dropdown-menu,
-    .dropdown.about-dropdown .dropdown-menu {
+    .dropdown-menu li {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .dropdown-menu li a {
+        padding: 12px 15px !important;
+        font-size: 14px;
+        color: var(--primary-color) !important;
+        font-weight: 500;
+    }
+
+    /* All dropdown menus always visible on mobile */
+    .nav-menu .dropdown .dropdown-menu {
         max-height: 500px !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
@@ -110,12 +115,6 @@
         overflow: visible !important;
         position: static !important;
         transform: none !important;
-    }
-
-    .dropdown.active .dropdown-menu {
-        max-height: 500px;
-        padding-top: 10px;
-        padding-bottom: 10px;
     }
 
     .dropdown-menu li {
