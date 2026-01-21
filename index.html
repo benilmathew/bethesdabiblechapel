@@ -15,19 +15,81 @@
     <!-- Header Component -->
     <div id="header-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">WELCOME HOME!</h1>
-            <p class="hero-subtitle">Sunday Services at 10 AM</p>
-            <div class="hero-buttons">
-<!--                 <a href="pages/sermons.html" class="btn btn-light">Latest Sermon</a>
-                <a href="pages/live.html" class="btn btn-outline">Live Stream</a>
-                <a href="pages/visit.html" class="btn btn-outline">Plan Your Visit</a> -->
+    <!-- Hero Carousel -->
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide active" style="background-image: url('assets/images/homepage/BBC-40.jpg')">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-content">
+                    <h1 class="carousel-title">WELCOME HOME!</h1>
+                    <p class="carousel-subtitle">Sunday Services at 10 AM</p>
+                    <div class="carousel-buttons">
+                        <a href="pages/events.html" class="btn btn-light">Church Events</a>
+                        <a href="pages/visit.html" class="btn btn-outline">Plan Your Visit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('assets/images/homepage/Church2.jpg')">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-content">
+                    <h1 class="carousel-title">JOIN OUR COMMUNITY</h1>
+                    <p class="carousel-subtitle">A place where faith comes alive</p>
+                    <div class="carousel-buttons">
+                        <a href="pages/about.html" class="btn btn-light">Learn More</a>
+                        <a href="pages/contact.html" class="btn btn-outline">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('assets/images/homepage/Grpup4.jpg')">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-content">
+                    <h1 class="carousel-title">GROW IN FAITH</h1>
+                    <p class="carousel-subtitle">Bible study and discipleship opportunities</p>
+                    <div class="carousel-buttons">
+                        <a href="pages/events.html" class="btn btn-light">View Events</a>
+                        <a href="pages/community-workshop.html" class="btn btn-outline">Community Workshop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('assets/images/homepage/Retreat.jpg')">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-content">
+                    <h1 class="carousel-title">EXPERIENCE FELLOWSHIP</h1>
+                    <p class="carousel-subtitle">Building relationships that last</p>
+                    <div class="carousel-buttons">
+                        <a href="pages/team.html" class="btn btn-light">Meet the Team</a>
+                        <a href="pages/contact.html" class="btn btn-outline">Get Connected</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('assets/images/homepage/2025Group.jpg')">
+                <div class="carousel-overlay"></div>
+                <div class="carousel-content">
+                    <h1 class="carousel-title">OUR CHURCH FAMILY</h1>
+                    <p class="carousel-subtitle">Together in worship and service</p>
+                    <div class="carousel-buttons">
+                        <a href="pages/about.html" class="btn btn-light">Our Story</a>
+                        <a href="pages/events.html" class="btn btn-outline">Join Us</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="hero-scroll">
+
+        <!-- Carousel Navigation -->
+        <div class="carousel-nav">
+            <button class="carousel-prev" aria-label="Previous slide">‹</button>
+            <div class="carousel-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
+            </div>
+            <button class="carousel-next" aria-label="Next slide">›</button>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="carousel-scroll">
             <span>Scroll Down</span>
         </div>
     </section>

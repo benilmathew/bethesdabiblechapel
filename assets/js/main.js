@@ -320,5 +320,121 @@ const createBackToTop = () => {
     });
 };
 
+// ====================================
+// Hero Carousel Functionality
+// ====================================
+
+function initializeCarousel() {
+    const carousel = document.querySelector('.hero-carousel');
+    if (!carousel) return;
+
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+
+    let currentSlide = 0;
+    let slideInterval;
+
+    // Initialize carousel
+    function init() {
+        showSlide(currentSlide);
+        startAutoSlide();
+    }
+
+    // Show specific slide
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === index);
+        });
+
+        // Show current slide
+        slides[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    // Next slide
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Previous slide
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Go to specific slide
+    function goToSlide(index) {
+        showSlide(index);
+    }
+
+    // Start auto slide
+    function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    // Stop auto slide
+    function stopAutoSlide() {
+        clearInterval(slideInterval);
+    }
+
+    // Event listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto slide
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto slide
+        });
+    }
+
+    // Indicator click events
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            goToSlide(index);
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto slide
+        });
+    });
+
+    // Pause auto slide on hover
+    carousel.addEventListener('mouseenter', stopAutoSlide);
+    carousel.addEventListener('mouseleave', startAutoSlide);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        }
+    });
+
+    // Initialize
+    init();
+}
+
+// Initialize carousel when DOM is loaded
+initializeCarousel();
+
 // Uncomment to enable back to top button
 // createBackToTop();
