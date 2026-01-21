@@ -30,8 +30,21 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadComponent('header-placeholder', `${pathPrefix}/components/header.html`);
     await loadComponent('footer-placeholder', `${pathPrefix}/components/footer.html`);
     
+    // Dispatch event to notify that components are loaded
+    document.dispatchEvent(new CustomEvent('componentsLoaded'));
+    
     // Update active nav link after header is loaded
     updateActiveNavLink();
+    
+    // Initialize carousel after components are loaded (only on homepage)
+    if (isRootPage) {
+        // Small delay to ensure DOM is fully updated
+        setTimeout(() => {
+            if (typeof initializeCarousel === 'function') {
+                initializeCarousel();
+            }
+        }, 100);
+    }
     
     // Note: Mobile menu is handled by main.js
 });

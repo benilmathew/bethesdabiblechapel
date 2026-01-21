@@ -2,148 +2,88 @@
 // Main JavaScript File
 // ====================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Wait for components to load, then initialize mobile menu
-    function initializeMobileMenu() {
-        // Mobile Menu Toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        const dropdowns = document.querySelectorAll('.dropdown');
+document.addEventListener('componentsLoaded', function() {
+    // Simple Mobile Menu Toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
 
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', function() {
-                this.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-
-                // Ensure About dropdown stays active when menu is opened on mobile
-                if (navMenu.classList.contains('active') && window.innerWidth <= 1024) {
-                    // Force handle dropdowns to ensure About dropdown is active
-                    handleDropdowns();
-                    // Additional check
-                    const aboutDropdown = document.querySelector('.dropdown a[href="/pages/about.html"]');
-                    if (aboutDropdown) {
-                        aboutDropdown.closest('.dropdown').classList.add('active', 'about-dropdown');
-                    }
-                }
-            });
-        }
-
-        // Mobile Dropdown Toggle - works on all screen sizes dynamically
-        function handleDropdowns() {
-            dropdowns.forEach(dropdown => {
-                const link = dropdown.querySelector('a');
-                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-
-                // Remove old event listeners by cloning
-                const newLink = link.cloneNode(true);
-                link.parentNode.replaceChild(newLink, link);
-
-                if (window.innerWidth <= 1024) {
-                    // Special case: Always keep About dropdown open on mobile
-                    if (link.getAttribute('href') === '/pages/about.html') {
-                        // Force active class and ensure it stays active
-                        setTimeout(() => {
-                            dropdown.classList.add('active', 'about-dropdown');
-                        }, 10);
-                        // Prevent default click behavior to keep dropdown open
-                        newLink.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            // Keep dropdown active - don't toggle it
-                            dropdown.classList.add('active');
-                        });
-                    } else {
-                        // Mobile behavior: click to expand for other dropdowns
-                        newLink.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            dropdown.classList.toggle('active');
-                        });
-                    }
-                } else {
-                    // Desktop behavior: remove active class, hover is handled by CSS
-                    dropdown.classList.remove('active');
-                }
-            });
-        }
-
-        // Initialize dropdown handlers
-        handleDropdowns();
-
-        // Additional check: Ensure About dropdown is active on mobile
-        function ensureAboutDropdownActive() {
-            if (window.innerWidth <= 1024) {
-                const aboutDropdown = document.querySelector('.dropdown a[href="/pages/about.html"]');
-                if (aboutDropdown) {
-                    aboutDropdown.closest('.dropdown').classList.add('active', 'about-dropdown');
-                }
-            }
-        }
-
-        // Call this immediately and when menu opens
-        ensureAboutDropdownActive();
-
-        // Reinitialize on window resize
-        let resizeTimer;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                handleDropdowns();
-            }, 250);
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (navMenu && navMenu.classList.contains('active')) {
-                if (!e.target.closest('.nav-wrapper')) {
-                    mobileMenuToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            }
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
         });
     }
 
-    // Check if header is already loaded, if not wait for it
-    if (document.querySelector('.mobile-menu-toggle')) {
-        initializeMobileMenu();
-    } else {
-        // Wait for header component to load
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'childList' && document.querySelector('.mobile-menu-toggle')) {
-                    initializeMobileMenu();
-                    observer.disconnect();
-                }
-            });
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
+            if (navMenu) navMenu.classList.remove('active');
+            document.body.style.overflow = '';
         });
-        observer.observe(document.body, { childList: true, subtree: true });
-    }
+    });
 
-    // Close mobile menu when navigation links are clicked (but keep About dropdown active)
+    // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
-        const navMenu = document.querySelector('.nav-menu');
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-
         if (navMenu && navMenu.classList.contains('active')) {
-            // If clicked element is a navigation link (but not the About dropdown toggle)
-            if (e.target.closest('.nav-menu a') && !e.target.closest('.dropdown a[href="/pages/about.html"]')) {
-                // Close mobile menu
-                mobileMenuToggle.classList.remove('active');
+            if (!e.target.closest('.nav-wrapper') && !e.target.closest('.mobile-menu-toggle')) {
+                if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.style.overflow = '';
-
-                // But ensure About dropdown stays active for next menu open
-                setTimeout(() => {
-                    const aboutDropdown = document.querySelector('.dropdown a[href="/pages/about.html"]');
-                    if (aboutDropdown && window.innerWidth <= 768) {
-                        aboutDropdown.closest('.dropdown').classList.add('active');
-                    }
-                }, 300);
             }
         }
     });
 
-    // Smooth Scroll for Anchor Links
+    // Initialize Accordion
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            const item = this.parentElement;
+            const content = item.querySelector('.accordion-content');
+            const isActive = item.classList.contains('active');
+            
+            // Close all accordion items
+            document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    const otherContent = otherItem.querySelector('.accordion-content');
+                    if (otherContent) {
+                        otherContent.style.maxHeight = '0';
+                    }
+                }
+            });
+            
+            // Toggle current item
+            if (isActive) {
+                item.classList.remove('active');
+                content.style.maxHeight = '0';
+            } else {
+                item.classList.add('active');
+                // Temporarily set max-height to allow calculation of scrollHeight
+                content.style.maxHeight = 'none';
+                const scrollHeight = content.scrollHeight;
+                content.style.maxHeight = '0';
+                
+                // Use setTimeout to ensure the transition works
+                setTimeout(() => {
+                    content.style.maxHeight = scrollHeight + 'px';
+                }, 10);
+            }
+        });
+    });
+    
+    // Auto-open first accordion item
+    if (accordionHeaders.length > 0) {
+        setTimeout(() => {
+            accordionHeaders[0].click();
+        }, 500);
+    }
+});
+
+// Smooth Scroll for Anchor Links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -247,7 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set active nav link based on current page
     const currentLocation = location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-menu a');
     
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href').split('/').pop();
@@ -255,7 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
-});
 
 // Lazy Loading Images
 if ('IntersectionObserver' in window) {
@@ -325,13 +263,19 @@ const createBackToTop = () => {
 // ====================================
 
 function initializeCarousel() {
+    console.log('Initializing carousel...');
     const carousel = document.querySelector('.hero-carousel');
-    if (!carousel) return;
+    if (!carousel) {
+        console.log('Carousel element not found');
+        return;
+    }
 
     const slides = document.querySelectorAll('.carousel-slide');
     const indicators = document.querySelectorAll('.indicator');
     const prevBtn = document.querySelector('.carousel-prev');
     const nextBtn = document.querySelector('.carousel-next');
+
+    console.log('Found elements:', { slides: slides.length, indicators: indicators.length, prevBtn: !!prevBtn, nextBtn: !!nextBtn });
 
     let currentSlide = 0;
     let slideInterval;
@@ -431,10 +375,11 @@ function initializeCarousel() {
 
     // Initialize
     init();
+    console.log('Carousel initialized successfully');
 }
 
 // Initialize carousel when DOM is loaded
-initializeCarousel();
+// initializeCarousel(); // Moved to components.js to ensure proper timing
 
 // Uncomment to enable back to top button
 // createBackToTop();

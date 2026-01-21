@@ -3,12 +3,27 @@
    ==================================== */
 
 /* Tablets and smaller desktops */
-@media screen and (max-width: 1024px) {
-    .carousel-slide {
-        background-size: cover;
-        background-attachment: scroll; /* Better performance on mobile */
-        background-position: center;
+@media screen and (max-width: 1200px) {
+    .carousel-nav {
+        bottom: 120px; /* Increase separation from content */
+        gap: 15px;
+        z-index: 10; /* Ensure it's on top */
     }
+
+    .carousel-prev,
+    .carousel-next {
+        width: 44px; /* Slightly smaller than desktop */
+        height: 44px;
+        font-size: 22px;
+    }
+
+    .carousel-scroll {
+        bottom: 20px; /* Adjust scroll indicator position */
+        font-size: 11px;
+        z-index: 5; /* Below navigation but above content */
+    }
+
+
 
     .carousel-title {
         font-size: 48px;
@@ -59,6 +74,7 @@
         gap: 0;
         transition: var(--transition);
         overflow-y: auto;
+        z-index: 1000;
     }
 
     .nav-menu.active {
@@ -157,6 +173,10 @@
         min-height: 350px;
     }
 
+    .carousel-content {
+        padding: 0 15px 100px 15px; /* Adjust padding for tablet */
+    }
+
     .carousel-title {
         font-size: 28px;
     }
@@ -177,6 +197,24 @@
 
     .section-title {
         font-size: 32px;
+    }
+
+    /* Adjust carousel navigation for tablets */
+    .carousel-nav {
+        bottom: 120px; /* Increase separation from scroll indicator */
+        gap: 15px;
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        width: 44px; /* Slightly smaller than desktop */
+        height: 44px;
+        font-size: 22px;
+    }
+
+    .carousel-scroll {
+        bottom: 20px; /* Adjust scroll indicator position */
+        font-size: 11px;
     }
 
     .section-description {
@@ -203,6 +241,17 @@
     .footer-content {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 30px;
+    }
+}
+
+/* Desktop - Standard Navigation */
+@media screen and (min-width: 1025px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
     }
 }
 
@@ -236,6 +285,35 @@
 
     .service-time {
         padding: 25px;
+    }
+
+    /* Fix carousel navigation overlap on mobile */
+    .hero-carousel {
+        height: 60vh; /* Reduce height on mobile for better spacing */
+        min-height: 400px;
+    }
+
+    .carousel-content {
+        padding: 0 15px 160px 15px; /* More bottom padding on mobile for navigation */
+    }
+
+    .carousel-nav {
+        bottom: 140px; /* Move navigation even higher on mobile */
+        gap: 12px; /* Tighter spacing between nav elements */
+        z-index: 10; /* Ensure it's on top of content */
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        width: 36px; /* Even smaller buttons on mobile */
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .carousel-scroll {
+        bottom: 15px; /* Position scroll indicator at very bottom */
+        font-size: 9px; /* Smaller text on mobile */
+        letter-spacing: 1px;
     }
 
     .service-time h3 {
@@ -294,7 +372,5 @@
         max-height: 900px;
     }
 
-    .carousel-slide {
-        background-attachment: scroll; /* Better performance on large screens */
-    }
+
 }

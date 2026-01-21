@@ -4,11 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Welcome to Bethesda Bible Chapel - A community of faith, worship, and service">
+    <meta name="keywords" content="church, bible, chapel, worship, christian, bethesda, bible chapel">
+    <meta name="author" content="Bethesda Bible Chapel">
+    <link rel="canonical" href="https://bethesdabiblechapel.com/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ReligiousOrganization",
+      "name": "Bethesda Bible Chapel",
+      "description": "A community of faith, worship, and service",
+      "url": "https://bethesdabiblechapel.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      }
+    }
+    </script>
     <title>Bethesda Bible Chapel - Welcome Home</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="assets/images/homepage/optimized/BBC-40.webp" as="image" type="image/webp">
+    <link rel="preload" href="assets/images/homepage/optimized/BBC-40.jpg" as="image" type="image/jpeg">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,7 +36,11 @@
     <!-- Hero Carousel -->
     <section class="hero-carousel">
         <div class="carousel-container">
-            <div class="carousel-slide active" style="background-image: url('assets/images/homepage/BBC-40.jpg')">
+            <div class="carousel-slide active">
+                <picture>
+                    <source srcset="assets/images/homepage/optimized/BBC-40.webp" type="image/webp">
+                    <img src="assets/images/homepage/optimized/BBC-40.jpg" alt="Bethesda Bible Chapel Welcome" loading="eager" class="carousel-image">
+                </picture>
                 <div class="carousel-overlay"></div>
                 <div class="carousel-content">
                     <h1 class="carousel-title">WELCOME HOME!</h1>
@@ -29,7 +51,11 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-slide" style="background-image: url('assets/images/homepage/Church2.jpg')">
+            <div class="carousel-slide">
+                <picture>
+                    <source srcset="assets/images/homepage/optimized/Church2.webp" type="image/webp">
+                    <img src="assets/images/homepage/optimized/Church2.jpg" alt="Join Our Community" loading="lazy" class="carousel-image">
+                </picture>
                 <div class="carousel-overlay"></div>
                 <div class="carousel-content">
                     <h1 class="carousel-title">JOIN OUR COMMUNITY</h1>
@@ -40,7 +66,11 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-slide" style="background-image: url('assets/images/homepage/Grpup4.jpg')">
+            <div class="carousel-slide">
+                <picture>
+                    <source srcset="assets/images/homepage/optimized/Grpup4.webp" type="image/webp">
+                    <img src="assets/images/homepage/optimized/Grpup4.jpg" alt="Grow in Faith" loading="lazy" class="carousel-image">
+                </picture>
                 <div class="carousel-overlay"></div>
                 <div class="carousel-content">
                     <h1 class="carousel-title">GROW IN FAITH</h1>
@@ -51,7 +81,11 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-slide" style="background-image: url('assets/images/homepage/Retreat.jpg')">
+            <div class="carousel-slide">
+                <picture>
+                    <source srcset="assets/images/homepage/optimized/Retreat.webp" type="image/webp">
+                    <img src="assets/images/homepage/optimized/Retreat.jpg" alt="Experience Fellowship" loading="lazy" class="carousel-image">
+                </picture>
                 <div class="carousel-overlay"></div>
                 <div class="carousel-content">
                     <h1 class="carousel-title">EXPERIENCE FELLOWSHIP</h1>
@@ -62,7 +96,11 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-slide" style="background-image: url('assets/images/homepage/2025Group.jpg')">
+            <div class="carousel-slide">
+                <picture>
+                    <source srcset="assets/images/homepage/optimized/2025Group.webp" type="image/webp">
+                    <img src="assets/images/homepage/optimized/2025Group.jpg" alt="Our Church Family" loading="lazy" class="carousel-image">
+                </picture>
                 <div class="carousel-overlay"></div>
                 <div class="carousel-content">
                     <h1 class="carousel-title">OUR CHURCH FAMILY</h1>
@@ -197,7 +235,7 @@
     <!-- Footer Component -->
     <div id="footer-placeholder"></div>
 
-    <script src="assets/js/components.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/components.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
 </body>
 </html>
