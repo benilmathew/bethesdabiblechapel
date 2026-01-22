@@ -1,0 +1,12 @@
+name = "bethesda-bible-chapel"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "."
+
+[env.production]
+# Cloudflare Pages configuration
+pages_build_output_dir = "."
+
+# Optional: Add custom domain later
+# routes = [
+#   { pattern = "bethesdabiblechapel.com", zone_name = "bethesdabiblechapel.com" }
+# ]
