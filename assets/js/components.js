@@ -56,12 +56,17 @@ function updateActiveNavLink() {
     
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href');
-        if (currentPath.includes(linkPath) && linkPath !== '/index.html') {
-            link.classList.add('active');
-        } else if (currentPath === '/' || currentPath.endsWith('index.html')) {
-            if (linkPath === '/index.html') {
+        link.classList.remove('active'); // Remove active from all links first
+        
+        // Check if it's the homepage
+        if (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('index.html')) {
+            if (linkPath.includes('index.html')) {
                 link.classList.add('active');
             }
+        } 
+        // Check for other pages - match the exact page name
+        else if (linkPath && linkPath !== '/index.html' && currentPath.includes(linkPath)) {
+            link.classList.add('active');
         }
     });
 }
