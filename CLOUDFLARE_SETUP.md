@@ -43,6 +43,8 @@ database_name = "bethesda_church"
 database_id = "your-actual-database-id-here"  # Replace this
 ```
 
+**Note:** The `wrangler.toml` includes an `[assets]` section that points to the root directory (`.`) where all static files (HTML, CSS, JS, images) are located. This is already configured correctly.
+
 ### 1.3 Initialize Database Schema
 
 ```bash
