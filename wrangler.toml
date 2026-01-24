@@ -6,11 +6,6 @@ compatibility_date = "2024-01-01"
 # Functions are in the functions/ directory
 pages_build_output_dir = "."
 
-# Assets directory for static files
-# This tells Wrangler where to find HTML, CSS, JS, images, etc.
-[assets]
-directory = "."
-
 # Cloudflare D1 Database binding
 # IMPORTANT: Replace database_id with your actual D1 database ID after running:
 # wrangler d1 create bethesda_church

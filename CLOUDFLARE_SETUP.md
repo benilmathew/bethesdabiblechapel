@@ -43,7 +43,7 @@ database_name = "bethesda_church"
 database_id = "your-actual-database-id-here"  # Replace this
 ```
 
-**Note:** The `wrangler.toml` includes an `[assets]` section that points to the root directory (`.`) where all static files (HTML, CSS, JS, images) are located. This is already configured correctly.
+**Note:** The repository includes a `.wranglerignore` file that excludes `node_modules/` and other unnecessary files from deployment. This prevents the "Asset too large" error by ensuring only essential files are uploaded to Cloudflare Pages.
 
 ### 1.3 Initialize Database Schema
 
