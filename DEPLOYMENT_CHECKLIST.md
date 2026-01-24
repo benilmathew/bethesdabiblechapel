@@ -2,6 +2,13 @@
 
 Use this checklist to deploy your Bethesda Bible Chapel website to Cloudflare Pages.
 
+## ⚠️ Important Deployment Command
+
+**Always use:** `wrangler pages deploy .` or `npm run deploy`  
+**DO NOT use:** `wrangler versions upload` (that's for Workers v2, not Pages)
+
+---
+
 ## Pre-Deployment Checklist
 
 ### Account Setup

@@ -123,11 +123,13 @@ bethesdabiblechapel/
 ## Available Scripts
 
 - `npm run dev` - Start Cloudflare Pages development server
-- `npm run deploy` - Deploy to Cloudflare Pages
+- `npm run deploy` - Deploy to Cloudflare Pages (runs `wrangler pages deploy .`)
 - `npm run db:init` - Initialize D1 database (local)
 - `npm run db:migrate` - Migrate D1 database (production)
 - `npm run dev:legacy` - Start legacy Express server
 - `npm run serve` - Start simple static file server
+
+**Note:** Always use `npm run deploy` or `wrangler pages deploy .` for deployment. Do NOT use `wrangler versions upload` (that's for Workers, not Pages).
 
 ## Features
 

@@ -72,11 +72,13 @@ If you want to test with sample data, uncomment the INSERT statements at the bot
 ### Option B: Using Wrangler CLI
 
 ```bash
-# Deploy from command line
+# Deploy from command line (use 'pages deploy', NOT 'versions upload')
 wrangler pages deploy . --project-name=bethesdabiblechapel
 
 # First deployment will create the project
 ```
+
+**Important:** Use `wrangler pages deploy` for Cloudflare Pages projects. Do NOT use `wrangler versions upload` (that's for Workers v2, not Pages).
 
 ## Step 3: Connect D1 Database to Pages
 
