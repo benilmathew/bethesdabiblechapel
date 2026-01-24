@@ -122,10 +122,16 @@ export async function onRequest(context) {
                 <p><small>You can unsubscribe at any time by clicking the unsubscribe link in our emails.</small></p>
             `;
 
-            // Send email (don't wait for completion)
-            sendEmail(email, `Welcome to ${siteName} Newsletter`, mailHtml, env).catch(err => 
-                console.error('Error sending welcome email:', err)
-            );
+            // Send welcome email (with error logging)
+            sendEmail(email, `Welcome to ${siteName} Newsletter`, mailHtml, env)
+                .then(success => {
+                    if (!success) {
+                        console.warn('Failed to send welcome email to:', email);
+                    }
+                })
+                .catch(err => {
+                    console.error('Error sending welcome email:', err);
+                });
 
             return jsonResponse({
                 success: true,
@@ -194,14 +200,20 @@ export async function onRequest(context) {
             ${siteName} Team</p>
         `;
 
-        // Send emails (don't wait for completion)
-        sendEmail(contactEmail, `New Contact Form Submission: ${subject || 'General Inquiry'}`, notificationHtml, env).catch(err => 
-            console.error('Error sending notification email:', err)
-        );
-        
-        sendEmail(email, 'Thank you for contacting us', confirmationHtml, env).catch(err => 
-            console.error('Error sending confirmation email:', err)
-        );
+        // Send emails asynchronously (with error handling for monitoring)
+        Promise.allSettled([
+            sendEmail(contactEmail, `New Contact Form Submission: ${subject || 'General Inquiry'}`, notificationHtml, env),
+            sendEmail(email, 'Thank you for contacting us', confirmationHtml, env)
+        ]).then(results => {
+            results.forEach((result, index) => {
+                const emailType = index === 0 ? 'notification' : 'confirmation';
+                if (result.status === 'rejected') {
+                    console.error(`Error sending ${emailType} email:`, result.reason);
+                } else if (!result.value) {
+                    console.warn(`Failed to send ${emailType} email (no error thrown)`);
+                }
+            });
+        });
 
         return jsonResponse({
             success: true,

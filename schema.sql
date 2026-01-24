@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS events (
     location TEXT,
     image_url TEXT,
     category TEXT,
-    registration_required INTEGER DEFAULT 0,
+    registration_required INTEGER DEFAULT 0 CHECK(registration_required IN (0, 1)),
     max_attendees INTEGER,
     status TEXT DEFAULT 'published' CHECK(status IN ('draft', 'published', 'cancelled')),
     created_at TEXT DEFAULT (datetime('now')),
