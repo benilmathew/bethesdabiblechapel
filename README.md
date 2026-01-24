@@ -16,7 +16,7 @@ For detailed deployment instructions, see [CLOUDFLARE_SETUP.md](CLOUDFLARE_SETUP
 
 ### Prerequisites
 
-- Node.js 18 or higher
+- Node.js 20 or higher (required by Wrangler 4.x)
 - Wrangler CLI (`npm install -g wrangler`)
 - A Cloudflare account (free tier works)
 

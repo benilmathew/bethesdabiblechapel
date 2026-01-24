@@ -293,7 +293,7 @@ npm run dev
 **Error**: Deployment build fails
 
 **Solutions**:
-1. Make sure `.node-version` file exists with `18`
+1. Make sure `.node-version` file exists with `20` (Wrangler 4.x requires Node 20+)
 2. Check that `package.json` is valid
 3. Review build logs in Cloudflare Dashboard
 4. Try deploying with `wrangler pages deploy .`
