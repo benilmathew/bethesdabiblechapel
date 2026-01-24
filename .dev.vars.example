@@ -1,0 +1,21 @@
+# Cloudflare Pages Local Development Variables
+# Copy this file to .dev.vars for local development
+# DO NOT commit .dev.vars to version control
+
+# Email Configuration (for contact form)
+# Use Mailchannels (free with Cloudflare Workers) or external service
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASSWORD=your-app-password
+FROM_EMAIL=noreply@bethesdachurch.org
+FROM_NAME=Bethesda Church
+CONTACT_EMAIL=bethesdabiblechapel@gmail.com
+
+# Site Configuration
+SITE_NAME=Bethesda Bible Chapel
+SITE_URL=https://bethesdabiblechapel.pages.dev
+
+# Optional: API Keys if needed
+# GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+# YOUTUBE_API_KEY=your-youtube-api-key
