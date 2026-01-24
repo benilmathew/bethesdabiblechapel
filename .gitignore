@@ -11,3 +11,8 @@ Thumbs.db
 dist/
 build/
 package-lock.json
+
+# Cloudflare
+.dev.vars
+.wrangler/
+wrangler.toml.backup

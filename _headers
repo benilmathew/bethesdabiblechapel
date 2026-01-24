@@ -1,0 +1,24 @@
+# Custom Headers for Cloudflare Pages
+# Security headers and CORS configuration
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# API endpoints - CORS enabled
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, OPTIONS
+  Access-Control-Allow-Headers: Content-Type
+  Access-Control-Max-Age: 86400
+
+# Static assets - cache for 1 year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages - cache for 1 hour
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate

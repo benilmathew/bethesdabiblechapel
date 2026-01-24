@@ -1,0 +1,46 @@
+# Wrangler ignore file
+# Files and directories to exclude from Cloudflare Pages deployment
+
+# Dependencies
+node_modules/
+
+# Development files
+.env
+.dev.vars
+.env.example
+.dev.vars.example
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+.wrangler/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Documentation (keep essential docs, exclude large/unnecessary ones)
+# Note: README.md, CLOUDFLARE_SETUP.md are kept for reference
+
+# Legacy server files (not needed for Cloudflare Pages)
+server.js
+dev-server.js
+netlify.toml
+optimize-images.js
