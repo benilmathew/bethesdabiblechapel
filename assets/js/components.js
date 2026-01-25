@@ -3,6 +3,25 @@
  * Loads header and footer components into pages
  */
 
+// Google Analytics - Replace 'GA_MEASUREMENT_ID' with your actual tracking ID
+function initializeGoogleAnalytics() {
+    // Load Google Analytics script
+    const script1 = document.createElement('script');
+    script1.async = true;
+    script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-62PVJWW6H9';
+    document.head.appendChild(script1);
+
+    // Initialize Google Analytics
+    const script2 = document.createElement('script');
+    script2.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-62PVJWW6H9');
+    `;
+    document.head.appendChild(script2);
+}
+
 // Load component from file
 async function loadComponent(elementId, componentPath) {
     try {
@@ -22,6 +41,9 @@ async function loadComponent(elementId, componentPath) {
 
 // Initialize components when DOM is ready
 document.addEventListener('DOMContentLoaded', async function() {
+    // Initialize Google Analytics
+    initializeGoogleAnalytics();
+    
     // Determine the correct path based on current location
     const isRootPage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
     const pathPrefix = isRootPage ? '' : '..';
