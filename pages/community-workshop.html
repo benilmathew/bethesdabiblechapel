@@ -160,7 +160,7 @@
                                 <p style="font-size: 14px; opacity: 0.9; margin-bottom: 20px; line-height: 1.5;">
                                     Fill out our simple online registration form to reserve your spot.
                                 </p>
-                                <button class="btn btn-light" style="width: 100%; padding: 12px; font-size: 16px;" disabled>Registration Form Coming Soon</button>
+                                <a href="community-workshop-registration.html" class="btn btn-light" style="width: 100%; padding: 12px; font-size: 16px; display: inline-block; text-align: center; text-decoration: none;">Register Now</a>
                             </div>
 
                             <!-- Contact for Info -->
@@ -298,11 +298,8 @@
 
             // Handle registration button clicks
             function handleRegistrationClick() {
-                // For now, show an alert. Later this will link to the Google Form
-                alert('Registration form will be available soon! Please check back later or contact us for more information.');
-
-                // Future implementation:
-                // window.open('YOUR_GOOGLE_FORM_URL', '_blank');
+                // Navigate to the registration page
+                window.location.href = 'community-workshop-registration.html';
             }
 
             if (floatingBtn) {
