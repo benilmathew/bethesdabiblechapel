@@ -47,9 +47,16 @@
                 </div>
 
                 <!-- Embedded Registration Form -->
-                <div class="form-wrapper" style="background-color: var(--bg-light); border-radius: 12px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
-                    <div data-customgform="cmkszih8o00s3wn5k67rw7ub3"></div>
-                    <script async src="https://cdn.customgform.com/cgf.js"></script>
+                <div class="form-wrapper" style="background-color: var(--bg-light); border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScw5vueroJ6G_3XGpXZDAJSmaMnouoE7xarnlGUBVj_s09a3g/viewform?embedded=true"
+                            width="100%"
+                            height="800"
+                            frameborder="0"
+                            marginheight="0"
+                            marginwidth="0"
+                            style="border-radius: 8px; min-height: 600px;">
+                        Loading Google Form...
+                    </iframe>
                 </div>
 
                 <!-- Additional Information -->
@@ -92,24 +99,44 @@
 
             /* Minimize form padding on mobile */
             .registration-form-container .form-wrapper {
-                padding: 10px !important;  /* Reduced from 15px to 10px */
+                padding: 10px !important;
                 margin: 0 !important;
             }
 
-            /* Minimize section padding on mobile */
-            .section-padding {
-                padding: 20px 0 !important;  /* Reduced from 40px to 20px */
+            /* Make iframe responsive on mobile */
+            .form-wrapper iframe {
+                height: 600px !important;  /* Shorter height on mobile */
+                min-height: 500px !important;
             }
 
-            /* Minimize banner margins on mobile */
+            /* Reduce section padding on mobile */
+            .section-padding {
+                padding: 20px 0 !important;
+            }
+
+            /* Adjust banner margins on mobile */
             .registration-form-container > div[style*="text-align: center"] {
-                margin-bottom: 10px !important;  /* Reduced from 20px to 10px */
+                margin-bottom: 10px !important;
             }
 
             /* Reduce introduction margins on mobile */
             .registration-form-container > div:first-child {
-                margin-bottom: 20px !important;  /* Reduced from 40px to 20px */
+                margin-bottom: 15px !important;
             }
+        }
+
+        /* Desktop iframe styling */
+        @media screen and (min-width: 769px) {
+            .form-wrapper iframe {
+                height: 800px;
+                min-height: 700px;
+            }
+        }
+
+        /* Button hover effects (keeping for future use) */
+        .btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
         }
     </style>
 </body>
