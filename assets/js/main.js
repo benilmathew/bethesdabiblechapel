@@ -2,7 +2,47 @@
 // Main JavaScript File
 // ====================================
 
+console.log('main.js loaded and executing');
+
+// ====================================
+// Dynamic Copyright Year
+// ====================================
+
+// Function to set the copyright year
+function setCopyrightYear() {
+    console.log('setCopyrightYear function called');
+    const currentYearElement = document.getElementById('current-year');
+    console.log('currentYearElement:', currentYearElement);
+    if (currentYearElement) {
+        const year = new Date().getFullYear();
+        console.log('Setting year to:', year);
+        currentYearElement.textContent = year;
+        console.log('Year set successfully');
+    } else {
+        console.error('current-year element not found');
+    }
+}
+
+// Set the current year dynamically in footer after components are loaded
 document.addEventListener('componentsLoaded', function() {
+    console.log('componentsLoaded event fired');
+    setCopyrightYear();
+});
+
+// Also try to set it immediately in case components are already loaded
+console.log('Checking if components are already loaded...');
+if (document.getElementById('header-placeholder') && 
+    document.getElementById('footer-placeholder') && 
+    !document.getElementById('header-placeholder').innerHTML.includes('placeholder') &&
+    !document.getElementById('footer-placeholder').innerHTML.includes('placeholder')) {
+    console.log('Components appear to be already loaded, setting copyright year');
+    setCopyrightYear();
+}
+
+// Initialize main functionality when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM ready, initializing main functionality');
+
     // Simple Mobile Menu Toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -81,9 +121,8 @@ document.addEventListener('componentsLoaded', function() {
             accordionHeaders[0].click();
         }, 500);
     }
-});
 
-// Smooth Scroll for Anchor Links
+    // Smooth Scroll for Anchor Links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -102,7 +141,7 @@ document.addEventListener('componentsLoaded', function() {
                     });
 
                     // Close mobile menu if open
-                    if (navMenu.classList.contains('active')) {
+                    if (navMenu && navMenu.classList.contains('active')) {
                         mobileMenuToggle.classList.remove('active');
                         navMenu.classList.remove('active');
                         document.body.style.overflow = '';
@@ -153,7 +192,7 @@ document.addEventListener('componentsLoaded', function() {
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (navMenu.classList.contains('active') && 
+        if (navMenu && navMenu.classList.contains('active') && 
             !e.target.closest('.nav-menu') && 
             !e.target.closest('.mobile-menu-toggle')) {
             mobileMenuToggle.classList.remove('active');
@@ -195,68 +234,26 @@ document.addEventListener('componentsLoaded', function() {
         }
     });
 
-// Lazy Loading Images
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                const src = img.getAttribute('data-src');
-                if (src) {
-                    img.src = src;
-                    img.removeAttribute('data-src');
-                    observer.unobserve(img);
+    // Lazy Loading Images
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    if (src) {
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
                 }
-            }
+            });
         });
-    });
 
-    const lazyImages = document.querySelectorAll('img[data-src]');
-    lazyImages.forEach(img => imageObserver.observe(img));
-}
-
-// Back to Top Button (optional)
-const createBackToTop = () => {
-    const button = document.createElement('button');
-    button.innerHTML = '↑';
-    button.className = 'back-to-top';
-    button.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 999;
-    `;
-
-    document.body.appendChild(button);
-
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            button.style.opacity = '1';
-            button.style.visibility = 'visible';
-        } else {
-            button.style.opacity = '0';
-            button.style.visibility = 'hidden';
-        }
-    });
-
-    button.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-};
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        lazyImages.forEach(img => imageObserver.observe(img));
+    }
+});
 
 // ====================================
 // Hero Carousel Functionality
@@ -377,21 +374,3 @@ function initializeCarousel() {
     init();
     console.log('Carousel initialized successfully');
 }
-
-// Initialize carousel when DOM is loaded
-// initializeCarousel(); // Moved to components.js to ensure proper timing
-
-// Uncomment to enable back to top button
-// createBackToTop();
-
-// ====================================
-// Dynamic Copyright Year
-// ====================================
-
-// Set the current year dynamically in footer
-document.addEventListener('DOMContentLoaded', function() {
-    const currentYearElement = document.getElementById('current-year');
-    if (currentYearElement) {
-        currentYearElement.textContent = new Date().getFullYear();
-    }
-});

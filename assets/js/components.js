@@ -3,6 +3,8 @@
  * Loads header and footer components into pages
  */
 
+console.log('components.js loaded and executing');
+
 // Google Analytics - Replace 'GA_MEASUREMENT_ID' with your actual tracking ID
 function initializeGoogleAnalytics() {
     // Check if user has consented to cookies
@@ -219,7 +221,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadComponent('footer-placeholder', `${pathPrefix}/components/footer.html`);
     
     // Dispatch event to notify that components are loaded
+    console.log('Dispatching componentsLoaded event');
     document.dispatchEvent(new CustomEvent('componentsLoaded'));
+    console.log('componentsLoaded event dispatched');
     
     // Update active nav link after header is loaded
     updateActiveNavLink();
