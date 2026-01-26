@@ -1,11 +1,22 @@
-# Cache Busting Update Script
-# Run this script to update the asset version across all HTML files
+# Cache Busting Update Script (DEPRECATED)
+# This script is deprecated. Use update-config.ps1 instead.
+#
+# New workflow:
+# 1. Update ASSET_VERSION in .env file
+# 2. Run: .\update-config.ps1
+# 3. The config.js will be updated automatically
+#
+# This provides better maintainability and doesn't require updating HTML files.
 
-param(
-    [string]$NewVersion = "1.0.2"
-)
+Write-Host "DEPRECATED: This script is no longer needed!" -ForegroundColor Yellow
+Write-Host "Use the new .env-based system instead:" -ForegroundColor Cyan
+Write-Host "  1. Edit .env file: ASSET_VERSION=1.0.18" -ForegroundColor White
+Write-Host "  2. Run: .\update-config.ps1" -ForegroundColor White
+Write-Host "" -ForegroundColor White
+Write-Host "This keeps version management in one place and is much cleaner!" -ForegroundColor Green
 
-Write-Host "Updating cache busting version to: $NewVersion" -ForegroundColor Green
+# Exit without doing anything
+exit 0
 
 # Get all HTML files
 $htmlFiles = Get-ChildItem -Path "c:\Users\benil\OneDrive\Documents\Code\Bethesda" -Filter "*.html" -Recurse | Where-Object { $_.FullName -notlike "*node_modules*" }
@@ -20,8 +31,16 @@ foreach ($file in $htmlFiles) {
         # Update version in window.ASSET_VERSION
         $content = $content -replace "window\.ASSET_VERSION = '[^']*'", "window.ASSET_VERSION = '$NewVersion'"
 
-        # Update all asset URLs with new version
+        # Update all asset URLs with new version (existing versions)
         $content = $content -replace "\?v=[^'""]*", "?v=$NewVersion"
+
+        # Add version to script tags that don't have version parameters
+        $content = $content -replace '(<script[^>]*src="[^"]*\.js)(["][^>]*>)', "`$1?v=$NewVersion`$2"
+        $content = $content -replace "(<script[^>]*src='[^']*\.js)(['][^>]*>)", "`$1?v=$NewVersion`$2"
+
+        # Add version to CSS link tags that don't have version parameters
+        $content = $content -replace '(<link[^>]*href="[^"]*\.css)(["][^>]*>)', "`$1?v=$NewVersion`$2"
+        $content = $content -replace "(<link[^>]*href='[^']*\.css)(['][^>]*>)", "`$1?v=$NewVersion`$2"
 
         # Write back to file with UTF-8 encoding (without BOM)
         [System.IO.File]::WriteAllText($file.FullName, $content, [System.Text.Encoding]::UTF8)

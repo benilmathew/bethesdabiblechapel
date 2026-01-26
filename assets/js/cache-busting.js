@@ -3,9 +3,11 @@
  * Adds version parameters to asset URLs to force browser cache refresh
  */
 
-// Get the current asset version (defined in HTML head)
+// Get the current asset version (from config.js or fallback)
 function getAssetVersion() {
-    return window.ASSET_VERSION || '1.0.0';
+    return (window.APP_CONFIG && window.APP_CONFIG.ASSET_VERSION) ||
+           window.ASSET_VERSION ||
+           '1.0.0';
 }
 
 /**
