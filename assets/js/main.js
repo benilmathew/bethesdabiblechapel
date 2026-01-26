@@ -383,3 +383,15 @@ function initializeCarousel() {
 
 // Uncomment to enable back to top button
 // createBackToTop();
+
+// ====================================
+// Dynamic Copyright Year
+// ====================================
+
+// Set the current year dynamically in footer
+document.addEventListener('DOMContentLoaded', function() {
+    const currentYearElement = document.getElementById('current-year');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+});
