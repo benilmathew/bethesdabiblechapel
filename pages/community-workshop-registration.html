@@ -46,17 +46,32 @@
                     <img src="../assets/images/communityworkshop/banner.png" alt="Community Workshop Banner" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
                 </div>
 
-                <!-- Embedded Registration Form -->
-                <div class="form-wrapper" style="background-color: var(--bg-light); border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScw5vueroJ6G_3XGpXZDAJSmaMnouoE7xarnlGUBVj_s09a3g/viewform?embedded=true"
-                            width="100%"
-                            height="800"
-                            frameborder="0"
-                            marginheight="0"
-                            marginwidth="0"
-                            style="border-radius: 8px; min-height: 600px;">
+                <!-- Embedded Registration Form (Desktop) -->
+                <div class="form-wrapper desktop-form-embed" style="background-color: var(--bg-light); border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+                    <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLScw5vueroJ6G_3XGpXZDAJSmaMnouoE7xarnlGUBVj_s09a3g/viewform?embedded=true"
+                        width="100%"
+                        height="800"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0"
+                        style="border-radius: 8px; min-height: 600px;">
                         Loading Google Form...
                     </iframe>
+                </div>
+
+                <!-- Mobile CTA -->
+                <div class="mobile-form-cta" style="display: none; text-align: center; background-color: var(--bg-light); border-radius: 12px; padding: 25px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 22px; margin-bottom: 10px; color: var(--primary-color);">Register from your phone</h3>
+                    <p style="font-size: 15px; line-height: 1.6; color: var(--text-light); margin-bottom: 20px;">
+                        Tap the button below to launch the form in a full-screen view that is easier to scroll on mobile devices.
+                    </p>
+                    <button id="open-form-modal" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 16px; border-radius: 8px; font-weight: 600;">
+                        📝 Open Registration Form
+                    </button>
+                    <p style="font-size: 13px; margin-top: 15px; color: var(--text-light);">
+                        Having trouble? <a href="https://docs.google.com/forms/d/e/1FAIpQLScw5vueroJ6G_3XGpXZDAJSmaMnouoE7xarnlGUBVj_s09a3g/viewform?usp=dialog" target="_blank" rel="noopener" style="color: var(--primary-color);">Open in Google Forms</a>
+                    </p>
                 </div>
 
                 <!-- Additional Information -->
@@ -81,13 +96,159 @@
         </div>
     </section>
 
+        <!-- Mobile Form Modal -->
+        <div id="form-modal" class="form-modal" aria-hidden="true">
+            <div class="form-modal__overlay" data-close-modal></div>
+            <div class="form-modal__content" role="dialog" aria-modal="true" aria-labelledby="form-modal-title">
+                <div class="form-modal__header">
+                    <h3 id="form-modal-title" style="margin: 0; font-size: 20px;">Workshop Registration</h3>
+                    <button type="button" id="close-form-modal" class="form-modal__close" aria-label="Close registration form">&times;</button>
+                </div>
+                <div class="form-modal__body">
+                    <iframe
+                        id="form-modal-iframe"
+                        title="Workshop registration form"
+                        data-src="https://docs.google.com/forms/d/e/1FAIpQLScw5vueroJ6G_3XGpXZDAJSmaMnouoE7xarnlGUBVj_s09a3g/viewform?embedded=true"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0"
+                        allowfullscreen>
+                        Loading Google Form...
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
     <!-- Footer Component -->
     <div id="footer-placeholder"></div>
 
     <script src="../assets/js/components.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const openBtn = document.getElementById('open-form-modal');
+            const modal = document.getElementById('form-modal');
+            const closeBtn = document.getElementById('close-form-modal');
+            const modalIframe = document.getElementById('form-modal-iframe');
+            const overlay = modal ? modal.querySelector('[data-close-modal]') : null;
+
+            if (!modal) return;
+
+            function setBodyScroll(disable) {
+                if (disable) {
+                    document.body.classList.add('no-scroll');
+                } else {
+                    document.body.classList.remove('no-scroll');
+                }
+            }
+
+            function openModal() {
+                modal.classList.add('is-visible');
+                modal.setAttribute('aria-hidden', 'false');
+                setBodyScroll(true);
+                if (modalIframe && !modalIframe.src) {
+                    modalIframe.src = modalIframe.dataset.src;
+                }
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-visible');
+                modal.setAttribute('aria-hidden', 'true');
+                setBodyScroll(false);
+            }
+
+            if (openBtn) {
+                openBtn.addEventListener('click', openModal);
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', closeModal);
+            }
+
+            document.addEventListener('keyup', function(event) {
+                if (event.key === 'Escape' && modal.classList.contains('is-visible')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 
     <style>
+        .desktop-form-embed {
+            display: block;
+        }
+
+        .mobile-form-cta {
+            display: none;
+        }
+
+        .form-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .form-modal.is-visible {
+            display: flex;
+        }
+
+        .form-modal__overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .form-modal__content {
+            position: relative;
+            width: min(600px, 92%);
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-modal__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 10px;
+        }
+
+        .form-modal__close {
+            background: transparent;
+            border: none;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-modal__body iframe {
+            width: 100%;
+            height: 70vh;
+            border: none;
+        }
+
+        .form-modal__body {
+            flex: 1;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
         /* Mobile responsive styles for registration form */
         @media screen and (max-width: 768px) {
             /* Make form container truly full width on mobile */
@@ -107,6 +268,26 @@
             .form-wrapper iframe {
                 height: 600px !important;  /* Shorter height on mobile */
                 min-height: 500px !important;
+            }
+
+            .desktop-form-embed {
+                display: none !important;
+            }
+
+            .mobile-form-cta {
+                display: block !important;
+            }
+
+            .form-modal__content {
+                width: 100% !important;
+                height: 100% !important;
+                max-height: none !important;
+                border-radius: 0;
+                justify-content: flex-start;
+            }
+
+            .form-modal__body iframe {
+                height: calc(100vh - 80px);
             }
 
             /* Reduce section padding on mobile */

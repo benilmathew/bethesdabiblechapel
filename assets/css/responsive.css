@@ -366,6 +366,88 @@
     }
 }
 
+/* Mobile Workshop Grid Fixes */
+@media screen and (max-width: 767px) {
+    /* Force all elements to stay within viewport */
+    * {
+        max-width: 100vw;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .page-header {
+        padding: 60px 20px;
+    }
+    
+    .page-header h1 {
+        font-size: 32px;
+    }
+    
+    .page-header p {
+        font-size: 16px;
+    }
+    
+    .workshop-topics__grid {
+        grid-template-columns: 1fr;
+        min-width: 0;
+    }
+    
+    .workshop-about-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .workshop-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .workshop-topic-card,
+    .workshop-detail-card,
+    .about-card {
+        min-width: 0;
+        max-width: 100%;
+    }
+    
+    .section-title-small {
+        text-align: center;
+    }
+    
+    .workshop-card,
+    .workshop-topic-card,
+    .workshop-cta {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .workshop-topics {
+        padding: 40px 15px;
+        margin-left: -15px;
+        margin-right: -15px;
+        border-radius: 0;
+    }
+    
+    .workshop-cta {
+        padding: 40px 20px;
+        margin-left: -15px;
+        margin-right: -15px;
+        border-radius: 0;
+    }
+    
+    .workshop-card {
+        padding: 25px 20px;
+    }
+    
+    .workshop-content {
+        padding: 0 15px;
+    }
+    
+    .section-padding {
+        padding: 40px 0;
+    }
+}
+
 /* Large desktop screens */
 @media screen and (min-width: 1440px) {
     .hero-carousel {
