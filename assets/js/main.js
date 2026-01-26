@@ -27,21 +27,6 @@ function setCopyrightYear() {
 document.addEventListener('componentsLoaded', function() {
     console.log('componentsLoaded event fired');
     setCopyrightYear();
-});
-
-// Also try to set it immediately in case components are already loaded
-console.log('Checking if components are already loaded...');
-if (document.getElementById('header-placeholder') && 
-    document.getElementById('footer-placeholder') && 
-    !document.getElementById('header-placeholder').innerHTML.includes('placeholder') &&
-    !document.getElementById('footer-placeholder').innerHTML.includes('placeholder')) {
-    console.log('Components appear to be already loaded, setting copyright year');
-    setCopyrightYear();
-}
-
-// Initialize main functionality when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM ready, initializing main functionality');
 
     // Simple Mobile Menu Toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -78,13 +63,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize Accordion
     const accordionHeaders = document.querySelectorAll('.accordion-header');
-    
+
     accordionHeaders.forEach(header => {
         header.addEventListener('click', function() {
             const item = this.parentElement;
             const content = item.querySelector('.accordion-content');
             const isActive = item.classList.contains('active');
-            
+
             // Close all accordion items
             document.querySelectorAll('.accordion-item').forEach(otherItem => {
                 if (otherItem !== item) {
@@ -95,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             });
-            
+
             // Toggle current item
             if (isActive) {
                 item.classList.remove('active');
@@ -106,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 content.style.maxHeight = 'none';
                 const scrollHeight = content.scrollHeight;
                 content.style.maxHeight = '0';
-                
+
                 // Use setTimeout to ensure the transition works
                 setTimeout(() => {
                     content.style.maxHeight = scrollHeight + 'px';
@@ -114,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Auto-open first accordion item
     if (accordionHeaders.length > 0) {
         setTimeout(() => {
@@ -192,8 +177,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (navMenu && navMenu.classList.contains('active') && 
-            !e.target.closest('.nav-menu') && 
+        if (navMenu && navMenu.classList.contains('active') &&
+            !e.target.closest('.nav-menu') &&
             !e.target.closest('.mobile-menu-toggle')) {
             mobileMenuToggle.classList.remove('active');
             navMenu.classList.remove('active');
@@ -226,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set active nav link based on current page
     const currentLocation = location.pathname.split('/').pop() || 'index.html';
-    
+
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href').split('/').pop();
         if (linkPath === currentLocation) {
@@ -254,6 +239,16 @@ document.addEventListener('DOMContentLoaded', function() {
         lazyImages.forEach(img => imageObserver.observe(img));
     }
 });
+
+// Also try to set it immediately in case components are already loaded
+console.log('Checking if components are already loaded...');
+if (document.getElementById('header-placeholder') &&
+    document.getElementById('footer-placeholder') &&
+    !document.getElementById('header-placeholder').innerHTML.includes('placeholder') &&
+    !document.getElementById('footer-placeholder').innerHTML.includes('placeholder')) {
+    console.log('Components appear to be already loaded, setting copyright year');
+    setCopyrightYear();
+}
 
 // ====================================
 // Hero Carousel Functionality
