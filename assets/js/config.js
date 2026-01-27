@@ -1,7 +1,7 @@
 /**
  * Application Configuration
  * Auto-generated from .env file - DO NOT EDIT DIRECTLY
- * Generated on: 2026-01-26T20:13:37.613Z
+ * Generated on: 2026-01-27T17:10:44.755Z
  */
 
 // Asset version for cache busting

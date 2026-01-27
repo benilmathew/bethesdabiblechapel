@@ -195,6 +195,11 @@ img {
     transform: translateY(-2px);
 }
 
+.btn-light:active {
+    background-color: var(--bg-light);
+    transform: translateY(-1px);
+}
+
 .btn-outline {
     background-color: transparent;
     color: white;
@@ -204,6 +209,12 @@ img {
 .btn-outline:hover {
     background-color: white;
     color: var(--primary-color);
+}
+
+.btn-outline:active {
+    background-color: white;
+    color: var(--primary-color);
+    transform: translateY(-1px);
 }
 
 .btn-link {
@@ -607,6 +618,82 @@ img {
     z-index: 3;
     animation: bounce 2s infinite;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ====================================
+   Hero Actions Section
+   ==================================== */
+
+.hero-actions {
+    background: rgb(44, 62, 80);
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+}
+
+.hero-actions-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: #e0e0e0;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.hero-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Responsive styles for hero-actions */
+@media (min-width: 768px) {
+    .hero-actions {
+        padding: 120px 0;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .hero-buttons-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-actions {
+        padding: 60px 20px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
 }
 
 /* ====================================
@@ -2267,4 +2354,33 @@ body.no-scroll {
 .accordion-content strong {
     color: var(--primary-color);
     font-weight: 600;
+}
+
+/* ====================================
+   Mobile Touch Device Fixes
+   ==================================== */
+
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .btn-light:hover,
+    .btn-outline:hover,
+    .btn-primary:hover,
+    .btn-link:hover {
+        background-color: initial;
+        color: initial;
+        transform: none;
+    }
+
+    /* Mobile button styles - all buttons get white background */
+    .hero-actions .btn {
+        background-color: white !important;
+        color: var(--primary-color) !important;
+        border: 2px solid white !important;
+    }
+
+    .hero-actions .btn:hover,
+    .hero-actions .btn:active {
+        background-color: var(--bg-light) !important;
+        transform: none !important;
+    }
 }

@@ -27,6 +27,7 @@ function setCopyrightYear() {
 document.addEventListener('componentsLoaded', function() {
     console.log('componentsLoaded event fired');
     setCopyrightYear();
+    initializeCarousel();
 
     // Simple Mobile Menu Toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -99,6 +100,9 @@ document.addEventListener('componentsLoaded', function() {
             }
         });
     });
+
+    // Initialize Registration Modal (only on workshop page)
+    initializeRegistrationModal();
 
     // Auto-open first accordion item
     if (accordionHeaders.length > 0) {
@@ -248,6 +252,131 @@ if (document.getElementById('header-placeholder') &&
     !document.getElementById('footer-placeholder').innerHTML.includes('placeholder')) {
     console.log('Components appear to be already loaded, setting copyright year');
     setCopyrightYear();
+}
+
+// ====================================
+// Registration Modal Functionality
+// ====================================
+
+function initializeRegistrationModal() {
+    console.log('Initializing registration modal...');
+
+    // Only initialize on pages with the modal
+    const modal = document.getElementById('registration-modal');
+    if (!modal) {
+        console.log('Registration modal not found on this page');
+        return;
+    }
+
+    const registrationButtons = document.querySelectorAll('.open-registration-modal');
+    const floatingCta = document.querySelector('.floating-registration-cta');
+    const mobileBanner = document.querySelector('.mobile-registration-banner');
+    const closeBtn = modal.querySelector('.registration-modal__close');
+    const overlay = modal.querySelector('[data-close-modal]');
+    const modalIframe = document.getElementById('registration-modal-iframe');
+    const modalSpinner = document.getElementById('registration-modal-spinner');
+    let formLoaded = false;
+
+    // Show floating CTA and mobile banner after page load
+    setTimeout(() => {
+        if (floatingCta) {
+            floatingCta.style.display = 'block';
+        }
+
+        if (mobileBanner) {
+            mobileBanner.style.display = 'block';
+        }
+    }, 1000);
+
+    function setBodyScroll(disable) {
+        if (disable) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+    }
+
+    function showSpinner() {
+        if (modalSpinner) {
+            modalSpinner.classList.remove('is-hidden');
+        }
+
+        if (modalIframe) {
+            modalIframe.classList.add('is-hidden');
+        }
+    }
+
+    function hideSpinner() {
+        if (modalSpinner) {
+            modalSpinner.classList.add('is-hidden');
+        }
+
+        if (modalIframe) {
+            modalIframe.classList.remove('is-hidden');
+        }
+    }
+
+    function openModal(event) {
+        if (event) {
+            event.preventDefault();
+        }
+
+        if (modal.classList.contains('is-visible')) {
+            return;
+        }
+
+        modal.classList.add('is-visible');
+        modal.setAttribute('aria-hidden', 'false');
+        setBodyScroll(true);
+
+        if (!formLoaded) {
+            showSpinner();
+        } else {
+            hideSpinner();
+        }
+
+        if (modalIframe && !modalIframe.src) {
+            modalIframe.src = modalIframe.dataset.src;
+        }
+    }
+
+    function closeModal() {
+        if (!modal.classList.contains('is-visible')) {
+            return;
+        }
+
+        modal.classList.remove('is-visible');
+        modal.setAttribute('aria-hidden', 'true');
+        setBodyScroll(false);
+    }
+
+    // Event listeners
+    registrationButtons.forEach((btn) => {
+        btn.addEventListener('click', openModal);
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeModal);
+    }
+
+    document.addEventListener('keyup', (event) => {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
+
+    if (modalIframe) {
+        modalIframe.addEventListener('load', () => {
+            formLoaded = true;
+            hideSpinner();
+        });
+    }
+
+    console.log('Registration modal initialized successfully');
 }
 
 // ====================================

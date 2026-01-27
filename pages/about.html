@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,28 +7,90 @@
     <title>What We Believe - Bethesda Bible Chapel</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=1.0.19">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico?v=1.0.19">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=1.0.19">
     
     <!-- Configuration and Cache Busting -->
     <script src="../assets/js/config.js"></script>
     
-    <link rel="stylesheet" href="../assets/css/main.css?v=1.0.16">
-    <link rel="stylesheet" href="../assets/css/responsive.css?v=1.0.16">
+    <link rel="stylesheet" href="../assets/css/main.css?v=1.0.19">
+    <link rel="stylesheet" href="../assets/css/responsive.css?v=1.0.19">
+    <link rel="preload" href="../assets/images/homepage/optimized/2025Group.webp?v=1.0.19" as="image" type="image/webp">
+    <link rel="preload" href="../assets/images/homepage/optimized/2025Group.jpg?v=1.0.19" as="image" type="image/jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">`n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`n    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="preload" href="../assets/images/logo.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="../assets/images/logo.svg?v=1.0.19" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header Component -->
     <div id="header-placeholder"></div>
 
-    <section class="page-header">
-        <div class="container">
-            <h1>About Us</h1>
-            <p>Learn more about Bethesda Bible Chapel and our mission</p>
+    <!-- Hero Carousel -->
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <picture>
+                    <source srcset="../assets/images/homepage/optimized/2025Group.webp?v=1.0.19" type="image/webp">
+                    <img src="../assets/images/homepage/optimized/2025Group.jpg?v=1.0.19" alt="Our Church Family" loading="eager" class="carousel-image">
+                </picture>
+                <div class="carousel-overlay"></div>
+            </div>
+            <div class="carousel-slide">
+                <picture>
+                    <source srcset="../assets/images/homepage/optimized/Grpup4.webp?v=1.0.19" type="image/webp">
+                    <img src="../assets/images/homepage/optimized/Grpup4.jpg?v=1.0.19" alt="Grow in Faith" loading="lazy" class="carousel-image">
+                </picture>
+                <div class="carousel-overlay"></div>
+            </div>
+            <div class="carousel-slide">
+                <picture>
+                    <source srcset="../assets/images/homepage/optimized/BBC-40.webp?v=1.0.19" type="image/webp">
+                    <img src="../assets/images/homepage/optimized/BBC-40.jpg?v=1.0.19" alt="Bethesda Bible Chapel Welcome" loading="lazy" class="carousel-image">
+                </picture>
+                <div class="carousel-overlay"></div>
+            </div>
+            <div class="carousel-slide">
+                <picture>
+                    <source srcset="../assets/images/homepage/optimized/Retreat.webp?v=1.0.19" type="image/webp">
+                    <img src="../assets/images/homepage/optimized/Retreat.jpg?v=1.0.19" alt="Experience Fellowship" loading="lazy" class="carousel-image">
+                </picture>
+                <div class="carousel-overlay"></div>
+            </div>
+            <div class="carousel-slide">
+                <picture>
+                    <source srcset="../assets/images/homepage/optimized/OCC.webp?v=1.0.19" type="image/webp">
+                    <img src="../assets/images/homepage/optimized/OCC.jpg?v=1.0.19" alt="Our Community Center" loading="lazy" class="carousel-image">
+                </picture>
+                <div class="carousel-overlay"></div>
+            </div>
+            <div class="carousel-slide">
+                <picture>
+                    <source srcset="../assets/images/homepage/optimized/Church2.webp?v=1.0.19" type="image/webp">
+                    <img src="../assets/images/homepage/optimized/Church2.jpg?v=1.0.19" alt="Bethesda Bible Chapel" loading="lazy" class="carousel-image">
+                </picture>
+                <div class="carousel-overlay"></div>
+            </div>
+        </div>
+
+        <!-- Carousel Navigation -->
+        <div class="carousel-nav">
+            <button class="carousel-prev" aria-label="Previous slide">«</button>
+            <div class="carousel-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
+                <span class="indicator" data-slide="5"></span>
+            </div>
+            <button class="carousel-next" aria-label="Next slide">»</button>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="carousel-scroll">
+            <span>Scroll Down</span>
         </div>
     </section>
 
@@ -236,8 +298,8 @@
     <!-- Footer Component -->
     <div id="footer-placeholder"></div>
 
-    <script src="../assets/js/components.js?v=1.0.16"></script>
-    <script src="../assets/js/main.js?v=1.0.16" defer></script>
+    <script src="../assets/js/components.js?v=1.0.19"></script>
+    <script src="../assets/js/main.js?v=1.0.19" defer></script>
 </body>
 </html>
 

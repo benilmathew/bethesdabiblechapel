@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,12 +9,12 @@
     <script src="../assets/js/config.js"></script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=1.0.16">
-    <link rel="icon" type="image/x-icon" href="../favicon.ico?v=1.0.16">
-    <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=1.0.16">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=1.0.19">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico?v=1.0.19">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=1.0.19">
 
-    <link rel="stylesheet" href="../assets/css/main.css?v=1.0.16">
-    <link rel="stylesheet" href="../assets/css/responsive.css?v=1.0.16">
+    <link rel="stylesheet" href="../assets/css/main.css?v=1.0.19">
+    <link rel="stylesheet" href="../assets/css/responsive.css?v=1.0.19">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
             <div class="workshop-about-grid">
                 <div class="workshop-card workshop-card--highlight">
                     <h3>Who We Are</h3>
-                    <p>We are a local church, Bethesda Bible Chapel (in Irving, TX), that is serving the local community by providing FREE WORKSHOPs about topics critical to life in the US. If you are an international family, college student, early career, local job seeker, or anyone looking to grow themselves these workshops are for you!</p>
+                    <p>We are a local church, Bethesda Bible Chapel (in Irving, TX), that is serving the local community by providing FREE WORKSHOPs about topics critical to life in the US. If you are an international family, college student, early career, local job seeker, or anyone looking to grow themselves, these workshops are for you!</p>
                 </div>
 
                 <div class="workshop-card workshop-card--highlight">
@@ -77,7 +77,7 @@
                         <p class="workshop-topic-text">Budgeting, saving strategies, and financial planning for long-term stability.</p>
                     </div>
                     <div class="workshop-topic-card">
-                        <div class="workshop-topic-icon">🏃‍♀️</div>
+                        <div class="workshop-topic-icon">🏃‍♂️</div>
                         <div class="workshop-topic-title">Healthy Living</div>
                         <p class="workshop-topic-text">Physical health, mental wellness, and balanced lifestyle habits.</p>
                     </div>
@@ -101,7 +101,7 @@
                     </div>
 
                     <div class="workshop-card">
-                        <div class="workshop-card-icon">🎯</div>
+                        <div class="workshop-card-icon">💡</div>
                         <h3>Why</h3>
                         <p>To provide guidance and serve the community for its success and benefit. We hope to provide attendees the needed skills/tools to better themselves, provide them opportunity for professional growth, have stable homes, and a balanced life.</p>
                     </div>
@@ -116,13 +116,13 @@
                     </div>
                     <div class="workshop-cta__grid">
                         <div class="workshop-cta-card">
-                            <div class="workshop-cta-icon">📝</div>
+                            <div class="workshop-cta-icon"> 📝</div>
                             <h4>Quick Registration</h4>
                             <p>Fill out our simple online registration form to reserve your spot.</p>
                             <button type="button" class="btn btn-light btn-block open-registration-modal" data-analytics-source="cta-card">Register Now</button>
                         </div>
                         <div class="workshop-cta-card">
-                            <div class="workshop-cta-icon">📞</div>
+                            <div class="workshop-cta-icon">❓</div>
                             <h4>Questions?</h4>
                             <p>Have questions about workshops or need help registering?</p>
                             <a href="../pages/contact.html" class="btn btn-outline btn-block">Contact Us</a>
@@ -152,7 +152,7 @@
     <!-- Mobile Registration Banner -->
     <div class="mobile-registration-banner">
         <div class="mobile-banner-content">
-            <div class="mobile-banner-icon">📝</div>
+            <div class="mobile-banner-icon">??</div>
             <div class="mobile-banner-text">
                 <div class="mobile-banner-title">Register for Workshops</div>
                 <div class="mobile-banner-subtitle">Free community workshops available</div>
@@ -166,7 +166,7 @@
         <div class="registration-modal__overlay" data-close-modal></div>
         <div class="registration-modal__content" role="dialog" aria-modal="true" aria-labelledby="registration-modal-title">
             <div class="registration-modal__media-wrapper">
-                <img src="../assets/images/communityworkshop/banner.png?v=1.0.16" alt="Community Workshop" class="registration-modal__media-banner">
+                <img src="../assets/images/communityworkshop/banner.png?v=1.0.19" alt="Community Workshop" class="registration-modal__media-banner">
                 <button type="button" class="registration-modal__close" aria-label="Close registration form">&times;</button>
             </div>
             <div class="registration-modal__body">
@@ -197,122 +197,8 @@
     <!-- Footer Component -->
     <div id="footer-placeholder"></div>
 
-    <script src="../assets/js/components.js?v=1.0.16"></script>
-    <script src="../assets/js/main.js?v=1.0.16"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const registrationButtons = document.querySelectorAll('.open-registration-modal');
-            const floatingCta = document.querySelector('.floating-registration-cta');
-            const mobileBanner = document.querySelector('.mobile-registration-banner');
-            const modal = document.getElementById('registration-modal');
-            const closeBtn = modal ? modal.querySelector('.registration-modal__close') : null;
-            const overlay = modal ? modal.querySelector('[data-close-modal]') : null;
-            const modalIframe = document.getElementById('registration-modal-iframe');
-            const modalSpinner = document.getElementById('registration-modal-spinner');
-            let formLoaded = false;
-
-            setTimeout(() => {
-                if (floatingCta) {
-                    floatingCta.style.display = 'block';
-                }
-
-                if (mobileBanner) {
-                    mobileBanner.style.display = 'block';
-                }
-            }, 1000);
-
-            if (!modal) {
-                return;
-            }
-
-            function setBodyScroll(disable) {
-                if (disable) {
-                    document.body.classList.add('no-scroll');
-                } else {
-                    document.body.classList.remove('no-scroll');
-                }
-            }
-
-            function showSpinner() {
-                if (modalSpinner) {
-                    modalSpinner.classList.remove('is-hidden');
-                }
-
-                if (modalIframe) {
-                    modalIframe.classList.add('is-hidden');
-                }
-            }
-
-            function hideSpinner() {
-                if (modalSpinner) {
-                    modalSpinner.classList.add('is-hidden');
-                }
-
-                if (modalIframe) {
-                    modalIframe.classList.remove('is-hidden');
-                }
-            }
-
-            function openModal(event) {
-                if (event) {
-                    event.preventDefault();
-                }
-
-                if (modal.classList.contains('is-visible')) {
-                    return;
-                }
-
-                modal.classList.add('is-visible');
-                modal.setAttribute('aria-hidden', 'false');
-                setBodyScroll(true);
-
-                if (!formLoaded) {
-                    showSpinner();
-                } else {
-                    hideSpinner();
-                }
-
-                if (modalIframe && !modalIframe.src) {
-                    modalIframe.src = modalIframe.dataset.src;
-                }
-            }
-
-            function closeModal() {
-                if (!modal.classList.contains('is-visible')) {
-                    return;
-                }
-
-                modal.classList.remove('is-visible');
-                modal.setAttribute('aria-hidden', 'true');
-                setBodyScroll(false);
-            }
-
-            registrationButtons.forEach((btn) => {
-                btn.addEventListener('click', openModal);
-            });
-
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeModal);
-            }
-
-            if (overlay) {
-                overlay.addEventListener('click', closeModal);
-            }
-
-            document.addEventListener('keyup', (event) => {
-                if (event.key === 'Escape') {
-                    closeModal();
-                }
-            });
-
-            if (modalIframe) {
-                modalIframe.addEventListener('load', () => {
-                    formLoaded = true;
-                    hideSpinner();
-                });
-            }
-        });
-    </script>
+    <script src="../assets/js/components.js?v=1.0.19"></script>
+    <script src="../assets/js/main.js?v=1.0.19"></script>
 </body>
 </html>
 
