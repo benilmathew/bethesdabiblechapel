@@ -683,7 +683,8 @@ img {
 
 @media screen and (max-width: 768px) {
     .hero-actions {
-        padding: 60px 20px;
+        padding: 80px 20px 60px 20px;
+        margin-top: 80px; /* Ensure it's below the fixed header on mobile */
     }
 
     .hero-title {
