@@ -1,11 +1,11 @@
 /**
  * Application Configuration
  * Auto-generated from .env file - DO NOT EDIT DIRECTLY
- * Generated on: 2026-01-28T16:48:15.983Z
+ * Generated on: 2026-01-28T17:51:14.705Z
  */
 
 // Asset version for cache busting
-const ASSET_VERSION = '1.0.20';
+const ASSET_VERSION = '1.0.21';
 
 // Export for use in other scripts
 window.APP_CONFIG = {
