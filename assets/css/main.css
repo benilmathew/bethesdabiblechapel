@@ -683,8 +683,7 @@ img {
 
 @media screen and (max-width: 768px) {
     .hero-actions {
-        padding: 100px 20px 60px 20px;
-        margin-top: 120px; /* Increased for iPhone 15 Pro and other modern devices */
+        padding: 60px 20px;
     }
 
     .hero-title {
@@ -1741,7 +1740,7 @@ img {
 
 .registration-modal__media-banner {
     max-width: 100%;
-    max-height: 120px;
+    max-height: 225px;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -1750,7 +1749,7 @@ img {
 
 @media (min-width: 768px) {
     .registration-modal__media-banner {
-        max-height: 100px;
+        max-height: 225px;
     }
 }
 
